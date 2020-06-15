@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30104.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsForms", "WindowsForms\WindowsForms.csproj", "{906B7AD8-78E3-47DC-A344-C28F7AF78297}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLayer", "DataLayer\DataLayer.csproj", "{424E9720-EF6F-4D50-B08F-9DA626E31609}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF", "WPF\WPF.csproj", "{55176C63-0848-4326-A927-61E6176E285B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{906B7AD8-78E3-47DC-A344-C28F7AF78297}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{906B7AD8-78E3-47DC-A344-C28F7AF78297}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{906B7AD8-78E3-47DC-A344-C28F7AF78297}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{906B7AD8-78E3-47DC-A344-C28F7AF78297}.Release|Any CPU.Build.0 = Release|Any CPU
+		{424E9720-EF6F-4D50-B08F-9DA626E31609}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{424E9720-EF6F-4D50-B08F-9DA626E31609}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{424E9720-EF6F-4D50-B08F-9DA626E31609}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{424E9720-EF6F-4D50-B08F-9DA626E31609}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55176C63-0848-4326-A927-61E6176E285B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55176C63-0848-4326-A927-61E6176E285B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55176C63-0848-4326-A927-61E6176E285B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55176C63-0848-4326-A927-61E6176E285B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {29588A41-3A04-408B-9C19-6F5625B6A511}
+	EndGlobalSection
+EndGlobal
