@@ -1,38 +1,51 @@
 ﻿using DataLayer;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace WindowsForms
 {
     public partial class InitialSettings : Form
     {
-        private static readonly string initSettingsPath = "initSettings.txt";
+        private const string DEFAULT_LANGUAGE = "hr";
         public InitialSettings()
         {
-            InitializeComponent();
+				if (Repo.CheckForSettingsFile())
+				{
+                OpenFavTeamForm();
+				}
+				else
+				{                
+                SetCulture(DEFAULT_LANGUAGE);            
+                InitializeComponent();
+				}
         }
 
-        private void btnSaveInitSettings_Click(object sender, EventArgs e)
+		  private void OpenFavTeamForm()
+		  {
+            FavouriteTeam favouriteTeam = new FavouriteTeam();
+            favouriteTeam.Show();
+            Hide();
+        }
+
+		  private void SetCulture(string culture)
+		  {
+            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(culture);
+            Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(culture);
+        }
+
+		  private void BtnSaveInitSettings_Click(object sender, EventArgs e)
         {
             var settings = new StringBuilder();
 
-            settings.Append(rbHrv.Checked ? "HRV;" : "ENG;");
-            settings.Append(rbMale.Checked ? "M" : "F");
-  
-            Repo.SaveSettingsToFile(settings.ToString(), initSettingsPath);
+            settings.Append(rbHrv.Checked ? "Lang:HRV\n" : "Lang:ENG\n");
+            settings.Append(rbMale.Checked ? "MaleFemale:M\n" : "MaleFemale:M\nF");
 
-            
-            FavouriteTeam favouriteTeam = new FavouriteTeam(settings.ToString());
-            favouriteTeam.Show();
-            this.Hide();
+            Repo.CreateSettingsFile();
+            Repo.SaveSettingsToFile(settings.ToString());
+
+            OpenFavTeamForm();
         }
     }
 }

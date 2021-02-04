@@ -1,59 +1,59 @@
 ﻿using DataLayer;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using WindowsForms.Properties;
 
 namespace WindowsForms
 {
     public partial class FavouriteTeam : Form
     {
-        private string maleTeamsURL = "https://world-cup-json-2018.herokuapp.com/teams";
-        private string femaleTeamsURL = "https://worldcup.sfg.io/teams";
-        private static readonly string favouriteTeamPath = "favTeam.txt";
-        private char maleFemale;
+        private readonly char maleFemale;
 
-        public FavouriteTeam(string settings)
+        public FavouriteTeam()
         {
+            SetCulture(Repo.LoadLangSetting());
+            maleFemale = Repo.LoadCompetitionSetting();
             InitializeComponent();
-            PopulateComboBox(settings);
-
-            maleFemale = settings.Last<char>();
+            PopulateComboBox();
         }
 
-        private async void PopulateComboBox(string settings)
+        private void SetCulture(string culture)
         {
-            var teams = await DataFlow.GetTeams(
-                settings.EndsWith("M") ? maleTeamsURL : femaleTeamsURL);
+				Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(culture);
+				Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(culture);
+        }
+
+        private async void PopulateComboBox()
+        {
+            LoadingWindow lw = new LoadingWindow();
+            lw.Show();
+            var teams = await DataFlow.GetTeams(Repo.GetTeamsUrl(maleFemale));
             foreach (var team in teams)
             {
                 cbTeamList.Items.Add(team.ToString());
             }
+            lw.Close();
         }
 
-        private void btnSaveFavouriteRep_Click(object sender, EventArgs e)
+        private void BtnSaveFavouriteRep_Click(object sender, EventArgs e)
         {
             if (cbTeamList.SelectedIndex != -1)
             {
-                Repo.SaveSettingsToFile(cbTeamList.SelectedItem.ToString(), favouriteTeamPath);
                 string rep = cbTeamList.SelectedItem.ToString();
                 string fifaCode = rep.Substring(rep.IndexOf('(') + 1, 3);
+                Repo.SaveSettingsToFile("FavTeam:" + fifaCode + "\n");
                 FavouritePlayers favouritePlayers = new FavouritePlayers(fifaCode, maleFemale);
                 favouritePlayers.Show();
                 this.Hide();
             }
             else
             {
-                MessageBox.Show("Pick your favourite team and click the 'Save' button to continue!");
-            }
-            
+                MessageBox.Show(Properties.Resources.favTeamError);
+            }            
         }
-    }
+
+		  private void FavouriteTeam_FormClosed(object sender, FormClosedEventArgs e) => Application.Exit();
+		  
+	 }
 }

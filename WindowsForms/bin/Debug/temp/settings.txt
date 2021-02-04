@@ -1,0 +1,5 @@
+## WorldCup App setitngs ##
+
+Lang:HRV
+MaleFemale:M
+

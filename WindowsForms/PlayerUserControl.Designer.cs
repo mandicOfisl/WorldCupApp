@@ -28,19 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.lblNameAndNumber = new System.Windows.Forms.Label();
             this.lblPosition = new System.Windows.Forms.Label();
             this.lblCaptain = new System.Windows.Forms.Label();
             this.pbFavourite = new System.Windows.Forms.PictureBox();
             this.pbImage = new System.Windows.Forms.PictureBox();
-            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.addToFavouritesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.removeFromFavouritesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.loadPictureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pbFavourite)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbImage)).BeginInit();
-            this.cms.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblNameAndNumber
@@ -99,42 +93,12 @@
             this.pbImage.TabIndex = 0;
             this.pbImage.TabStop = false;
             // 
-            // cms
-            // 
-            this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addToFavouritesToolStripMenuItem,
-            this.removeFromFavouritesToolStripMenuItem,
-            this.loadPictureToolStripMenuItem});
-            this.cms.Name = "cms";
-            this.cms.Size = new System.Drawing.Size(202, 92);
-            // 
-            // addToFavouritesToolStripMenuItem
-            // 
-            this.addToFavouritesToolStripMenuItem.Name = "addToFavouritesToolStripMenuItem";
-            this.addToFavouritesToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
-            this.addToFavouritesToolStripMenuItem.Text = "Add to favourites";
-            this.addToFavouritesToolStripMenuItem.Click += new System.EventHandler(this.addToFavouritesToolStripMenuItem_Click);
-            // 
-            // removeFromFavouritesToolStripMenuItem
-            // 
-            this.removeFromFavouritesToolStripMenuItem.Enabled = false;
-            this.removeFromFavouritesToolStripMenuItem.Name = "removeFromFavouritesToolStripMenuItem";
-            this.removeFromFavouritesToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
-            this.removeFromFavouritesToolStripMenuItem.Text = "Remove from favourites";
-            // 
-            // loadPictureToolStripMenuItem
-            // 
-            this.loadPictureToolStripMenuItem.Name = "loadPictureToolStripMenuItem";
-            this.loadPictureToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
-            this.loadPictureToolStripMenuItem.Text = "Load picture...";
-            // 
             // PlayerUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gray;
             this.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.ContextMenuStrip = this.cms;
             this.Controls.Add(this.pbFavourite);
             this.Controls.Add(this.lblCaptain);
             this.Controls.Add(this.lblPosition);
@@ -145,7 +109,6 @@
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlayerUserControl_MouseDown);
             ((System.ComponentModel.ISupportInitialize)(this.pbFavourite)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbImage)).EndInit();
-            this.cms.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -157,9 +120,5 @@
         private System.Windows.Forms.Label lblPosition;
         private System.Windows.Forms.Label lblCaptain;
         private System.Windows.Forms.PictureBox pbFavourite;
-        private System.Windows.Forms.ContextMenuStrip cms;
-        private System.Windows.Forms.ToolStripMenuItem addToFavouritesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem removeFromFavouritesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem loadPictureToolStripMenuItem;
     }
 }

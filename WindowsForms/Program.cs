@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataLayer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +17,10 @@ namespace WindowsForms
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new InitialSettings());
+				if (Repo.CheckForSettingsFile())
+                Application.Run(new FavouriteTeam());
+				else
+                Application.Run(new InitialSettings());
         }
     }
 }

@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
+﻿using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using DataLayer.Models;
+using System.IO;
 
 namespace WindowsForms
 {
@@ -16,7 +11,8 @@ namespace WindowsForms
         
         private PlayerUserControl selectedPlayer = null;
         public Player Player { get; set; }
-        public bool FavouriteIconVisible 
+		  public string ImagePath { get; set; }
+		  public bool FavouriteIconVisible 
         {
             get
             {
@@ -39,10 +35,24 @@ namespace WindowsForms
         {
             lblNameAndNumber.Text = $"#{player.ShirtNumber} {player.Name}";
             lblPosition.Text = player.Position.ToString();
-            lblCaptain.Visible = player.Captain ? true : false;
+            lblCaptain.Visible = player.Captain;
+            CheckSavedImages(player.Name);
+				if (ImagePath != null)
+				{
+                pbImage.Image = Image.FromFile(ImagePath);
+				}
         }
 
-        private void PlayerUserControl_MouseDown(object sender, MouseEventArgs e)
+		  private void CheckSavedImages(string name)
+		  {
+            string dir = Path.Combine(
+                    Path.GetDirectoryName(
+                        Path.GetDirectoryName(
+                            Directory.GetCurrentDirectory())) + @"\img", name + ".png");
+            ImagePath = File.Exists(dir) ? dir : null;
+		  }
+
+		  private void PlayerUserControl_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
@@ -64,14 +74,10 @@ namespace WindowsForms
             selectedPlayer.BackColor = Color.White;
         }
 
-        internal void ToggleFavourite()
+        internal void LoadImage(string fileName, string playerName)
         {
-           FavouriteIconVisible = !FavouriteIconVisible;
-        }
-
-        private void addToFavouritesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            
+            Image img = Image.FromFile(fileName);
+            pbImage.Image = img;
         }
     }
 }

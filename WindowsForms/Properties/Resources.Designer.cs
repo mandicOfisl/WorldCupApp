@@ -61,6 +61,25 @@ namespace WindowsForms.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Pick your favourite team and click the &apos;Save&apos; button to continue!.
+        /// </summary>
+        internal static string favTeamError {
+            get {
+                return ResourceManager.GetString("favTeamError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap gear_icon {
+            get {
+                object obj = ResourceManager.GetObject("gear_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap no_image {
