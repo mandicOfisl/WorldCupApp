@@ -11,32 +11,21 @@ namespace WindowsForms
         private const string DEFAULT_LANGUAGE = "hr";
         public InitialSettings()
         {
-				if (Repo.CheckForSettingsFile())
-				{
-					 if (Repo.LoadFavTeamSetting() != "")
-					 {
-                    OpenFavPlayersForm();
-					 }
-					 else
-					 {
-                    OpenFavTeamForm();
-					 }					 
-				}
-				else
-				{
-                SetCulture(DEFAULT_LANGUAGE);            
-                InitializeComponent();
-				}				
+            SetCulture(DEFAULT_LANGUAGE);
+            InitializeComponent();
         }
-
-		  private void OpenFavPlayersForm()
+		  private void SetCulture(string culture)
 		  {
-            FavouritePlayers favouritePlayers = new FavouritePlayers(
-                    Repo.LoadFavTeamSetting(),
-                    Repo.LoadCompetitionSetting());
-            favouritePlayers.Show();
-            Hide();
-		  }
+            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(culture);
+            Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(culture);
+        }
+		  private void BtnSaveInitSettings_Click(object sender, EventArgs e)
+        {
+            Repo.SaveSettingsToFile(rbHrv.Checked ? "hr" : "en", "Lang");
+            Repo.SaveSettingsToFile(rbMale.Checked ? "m" : "f", "MF");
+
+            OpenFavTeamForm();
+        }
 
 		  private void OpenFavTeamForm()
 		  {
@@ -45,18 +34,11 @@ namespace WindowsForms
             Hide();
         }
 
-		  private void SetCulture(string culture)
+		  private void InitialSettings_FormClosing(object sender, FormClosingEventArgs e)
 		  {
-            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(culture);
-            Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(culture);
-        }
+            if (MessageBox.Show("Exit application?", "Warning", MessageBoxButtons.YesNoCancel) != DialogResult.Yes)
+                e.Cancel = true;
 
-		  private void BtnSaveInitSettings_Click(object sender, EventArgs e)
-        {
-            Repo.SaveSettingsToFile(rbHrv.Checked ? "hr" : "en", "Lang");
-            Repo.SaveSettingsToFile(rbMale.Checked ? "M" : "F", "MaleFemale");
-
-            OpenFavTeamForm();
         }
-    }
+	 }
 }

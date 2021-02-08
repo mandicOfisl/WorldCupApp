@@ -38,6 +38,7 @@
 				this.changeCompetitionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 				this.changeFavouriteTeamToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 				this.changeLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+				this.selectFavouritePlayersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 				((System.ComponentModel.ISupportInitialize)(this.dgvPlayers)).BeginInit();
 				((System.ComponentModel.ISupportInitialize)(this.dgvMatches)).BeginInit();
 				this.menuStrip1.SuspendLayout();
@@ -89,7 +90,8 @@
 				this.settingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.changeCompetitionToolStripMenuItem,
             this.changeFavouriteTeamToolStripMenuItem,
-            this.changeLanguageToolStripMenuItem});
+            this.changeLanguageToolStripMenuItem,
+            this.selectFavouritePlayersToolStripMenuItem});
 				this.settingToolStripMenuItem.Name = "settingToolStripMenuItem";
 				resources.ApplyResources(this.settingToolStripMenuItem, "settingToolStripMenuItem");
 				// 
@@ -97,7 +99,7 @@
 				// 
 				this.changeCompetitionToolStripMenuItem.Name = "changeCompetitionToolStripMenuItem";
 				resources.ApplyResources(this.changeCompetitionToolStripMenuItem, "changeCompetitionToolStripMenuItem");
-				this.changeCompetitionToolStripMenuItem.Click += new System.EventHandler(this.ChangeCompetitionToolStripMenuItem_Click);
+				this.changeCompetitionToolStripMenuItem.Click += new System.EventHandler(this.ChangeCompetitionOrLanguage);
 				// 
 				// changeFavouriteTeamToolStripMenuItem
 				// 
@@ -109,7 +111,13 @@
 				// 
 				this.changeLanguageToolStripMenuItem.Name = "changeLanguageToolStripMenuItem";
 				resources.ApplyResources(this.changeLanguageToolStripMenuItem, "changeLanguageToolStripMenuItem");
-				this.changeLanguageToolStripMenuItem.Click += new System.EventHandler(this.ChangeLanguageToolStripMenuItem_Click);
+				this.changeLanguageToolStripMenuItem.Click += new System.EventHandler(this.ChangeCompetitionOrLanguage);
+				// 
+				// selectFavouritePlayersToolStripMenuItem
+				// 
+				this.selectFavouritePlayersToolStripMenuItem.Name = "selectFavouritePlayersToolStripMenuItem";
+				resources.ApplyResources(this.selectFavouritePlayersToolStripMenuItem, "selectFavouritePlayersToolStripMenuItem");
+				this.selectFavouritePlayersToolStripMenuItem.Click += new System.EventHandler(this.SelectFavouritePlayersToolStripMenuItem_Click);
 				// 
 				// Rankings
 				// 
@@ -122,7 +130,7 @@
 				this.Controls.Add(this.menuStrip1);
 				this.MainMenuStrip = this.menuStrip1;
 				this.Name = "Rankings";
-				this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Rankings_FormClosed);
+				this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Rankings_FormClosing);
 				((System.ComponentModel.ISupportInitialize)(this.dgvPlayers)).EndInit();
 				((System.ComponentModel.ISupportInitialize)(this.dgvMatches)).EndInit();
 				this.menuStrip1.ResumeLayout(false);
@@ -143,5 +151,6 @@
         private System.Windows.Forms.ToolStripMenuItem changeCompetitionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem changeFavouriteTeamToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem changeLanguageToolStripMenuItem;
-    }
+		  private System.Windows.Forms.ToolStripMenuItem selectFavouritePlayersToolStripMenuItem;
+	 }
 }

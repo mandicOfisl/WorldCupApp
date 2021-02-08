@@ -31,6 +31,7 @@
 				System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FavouriteTeam));
 				this.cbTeamList = new System.Windows.Forms.ComboBox();
 				this.btnSaveFavouriteRep = new System.Windows.Forms.Button();
+				this.BtnChangeCompetition = new System.Windows.Forms.Button();
 				this.SuspendLayout();
 				// 
 				// cbTeamList
@@ -47,17 +48,25 @@
 				this.btnSaveFavouriteRep.UseVisualStyleBackColor = true;
 				this.btnSaveFavouriteRep.Click += new System.EventHandler(this.BtnSaveFavouriteRep_Click);
 				// 
+				// BtnChangeCompetition
+				// 
+				resources.ApplyResources(this.BtnChangeCompetition, "BtnChangeCompetition");
+				this.BtnChangeCompetition.Name = "BtnChangeCompetition";
+				this.BtnChangeCompetition.UseVisualStyleBackColor = true;
+				this.BtnChangeCompetition.Click += new System.EventHandler(this.BtnChangeCompetition_Click);
+				// 
 				// FavouriteTeam
 				// 
 				resources.ApplyResources(this, "$this");
 				this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+				this.Controls.Add(this.BtnChangeCompetition);
 				this.Controls.Add(this.btnSaveFavouriteRep);
 				this.Controls.Add(this.cbTeamList);
 				this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 				this.MaximizeBox = false;
 				this.MinimizeBox = false;
 				this.Name = "FavouriteTeam";
-				this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FavouriteTeam_FormClosed);
+				this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FavouriteTeam_FormClosing);
 				this.ResumeLayout(false);
 
         }
@@ -66,5 +75,6 @@
 
         private System.Windows.Forms.ComboBox cbTeamList;
         private System.Windows.Forms.Button btnSaveFavouriteRep;
-    }
+		  private System.Windows.Forms.Button BtnChangeCompetition;
+	 }
 }

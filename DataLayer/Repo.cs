@@ -12,7 +12,6 @@ namespace DataLayer
     {
 
 		  private const string SETTINGS_FILENAME = "settings.txt";
-		  private const string NO_IMG_FILENAME = @"WorldCupApp\temp\img\no-image.png";
 
 		  private const string SETTINGS_FOLDER_NAME = @"WorldCupApp\temp";
 		  private const string IMG_FOLDER_NAME = @"WorldCupApp\temp\img";
@@ -58,7 +57,7 @@ namespace DataLayer
 				{
 					 w.WriteLine("## WorldCup App setitngs ##");
 					 w.WriteLine("Lang:");
-					 w.WriteLine("MaleFemale:");
+					 w.WriteLine("MF:");
 					 w.WriteLine("FavTeam:");
 					 w.WriteLine("P:");
 					 w.WriteLine("P:");
@@ -158,17 +157,6 @@ namespace DataLayer
 				string[] lines = File.ReadAllLines(fn);
 
 				return lines[2].Split(':')[1].ToCharArray()[0];
-
-				//using (StreamReader r = new StreamReader(SETTINGS_FILENAME))
-    //        {
-				//	 string line = r.ReadLine();
-				//	 if (line.StartsWith("MaleFemale"))
-				//	 {
-				//		  char c = line.Split(':')[1].StartsWith("M") ? 'M' : 'F';
-				//		  return c;
-				//	 }
-    //        }
-				//return DEF_COMP;
         }
 
 		  public static string LoadFavTeamSetting()
@@ -230,7 +218,7 @@ namespace DataLayer
 					 {
 						  try
 						  {
-								string oldValue = lines[i].Split(':')[1];
+								string oldValue = lines[4 + i].Split(':')[1];
 								lines[4 + i] = lines[4 + i].Replace(oldValue, players[i]);
 						  }
 						  catch (Exception)

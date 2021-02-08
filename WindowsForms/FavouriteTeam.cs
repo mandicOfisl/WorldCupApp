@@ -11,15 +11,31 @@ namespace WindowsForms
         private readonly char maleFemale;
 
 		  public string FifaCode { get; set; }
-
+        
 		  public FavouriteTeam()
         {
-            FifaCode = Repo.LoadFavTeamSetting();
-            maleFemale = Repo.LoadCompetitionSetting();
+				try
+				{
+					 FifaCode = Repo.LoadFavTeamSetting();
+					 maleFemale = Repo.LoadCompetitionSetting();
 
-            SetCulture(Repo.LoadLangSetting());
-            InitializeComponent();
-            PopulateComboBox();
+					 if (FifaCode != "")
+					 {
+                    FavouritePlayers favouritePlayers = new FavouritePlayers(FifaCode, maleFemale);
+                    favouritePlayers.Show();
+					 }
+					 else
+					 {
+					     SetCulture(Repo.LoadLangSetting());
+					     InitializeComponent();
+					     PopulateComboBox();
+					 }
+				}
+				catch (Exception)
+				{
+                InitialSettings init = new InitialSettings();
+                init.Show();
+				}
 
         }
 
@@ -62,7 +78,24 @@ namespace WindowsForms
             }            
         }
 
-		  private void FavouriteTeam_FormClosed(object sender, FormClosedEventArgs e) => Application.Exit();
-		  
+		  private void BtnChangeCompetition_Click(object sender, EventArgs e)
+		  {
+            MessageBoxButtons btns = MessageBoxButtons.YesNo;
+            DialogResult result = MessageBox.Show("Do you want to change the settings?", "!", btns);
+            if (result == DialogResult.Yes)
+            {
+                Repo.SaveSettingsToFile("", "MF");
+                Repo.SaveSettingsToFile("", "FavTeam");
+                InitialSettings init = new InitialSettings();
+                init.Show();
+                this.Hide();
+            }
+        }
+
+		  private void FavouriteTeam_FormClosing(object sender, FormClosingEventArgs e)
+		  {
+				if (MessageBox.Show("Exit application?", "Warning", MessageBoxButtons.YesNoCancel) != DialogResult.Yes)
+					 e.Cancel = true;
+		  }
 	 }
 }

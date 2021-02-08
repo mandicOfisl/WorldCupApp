@@ -132,7 +132,7 @@ namespace WindowsForms
 				// 
 				this.changeCompetitionToolStripMenuItem.Name = "changeCompetitionToolStripMenuItem";
 				resources.ApplyResources(this.changeCompetitionToolStripMenuItem, "changeCompetitionToolStripMenuItem");
-				this.changeCompetitionToolStripMenuItem.Click += new System.EventHandler(this.ChangeCompetitionToolStripMenuItem_Click);
+				this.changeCompetitionToolStripMenuItem.Click += new System.EventHandler(this.ChangeCompetitionOrLanguage);
 				// 
 				// changeFavouriteTeamToolStripMenuItem
 				// 
@@ -144,7 +144,7 @@ namespace WindowsForms
 				// 
 				this.changeLanguageToolStripMenuItem.Name = "changeLanguageToolStripMenuItem";
 				resources.ApplyResources(this.changeLanguageToolStripMenuItem, "changeLanguageToolStripMenuItem");
-				this.changeLanguageToolStripMenuItem.Click += new System.EventHandler(this.ChangeLanguageToolStripMenuItem_Click);
+				this.changeLanguageToolStripMenuItem.Click += new System.EventHandler(this.ChangeCompetitionOrLanguage);
 				// 
 				// FavouritePlayers
 				// 
@@ -157,7 +157,7 @@ namespace WindowsForms
 				this.Controls.Add(this.lblAllPlayers);
 				this.Controls.Add(this.lblFavouritePlayers);
 				this.Name = "FavouritePlayers";
-				this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FavouritePlayers_FormClosed);
+				this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FavouritePlayers_FormClosing);
 				this.cmsFavourite.ResumeLayout(false);
 				this.menuStrip1.ResumeLayout(false);
 				this.menuStrip1.PerformLayout();

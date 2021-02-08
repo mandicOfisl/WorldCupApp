@@ -19,6 +19,7 @@ namespace WindowsForms
             InitializeComponent();
             Mf = maleFemale;
             FifaCode = fifaCode;
+            Text = Text + " - " + fifaCode;
             FillAllPlayers(Mf, FifaCode);
         }
 
@@ -96,8 +97,8 @@ namespace WindowsForms
 				catch (Exception)
 				{
 				}
-                
-            return favPlayers;            
+
+            return favPlayers;
 
 				
 		  }
@@ -113,12 +114,11 @@ namespace WindowsForms
             }
             Repo.SaveFavouritePlayers(favPlayers);
 
-            //Repo.SaveSettingsToFile(favPlayers.ToString());
-
             Rankings rankings = new Rankings();
             rankings.Show();
             this.Hide();
         }
+
         private void FlpFavouritePlayers_DragEnter(object sender, DragEventArgs e)
         {
             e.Effect = DragDropEffects.Move;
@@ -200,39 +200,38 @@ namespace WindowsForms
 					 }
 				}
 		  }
-        private void ChangeCompetitionToolStripMenuItem_Click(object sender, EventArgs e)
+
+		  private void ChangeCompetitionOrLanguage(object sender, EventArgs e)
+		  {
+				MessageBoxButtons btns = MessageBoxButtons.YesNo;
+				DialogResult result = MessageBox.Show("Do you want to change the settings?", "!", btns);
+				if (result == DialogResult.Yes)
+				{
+					 Repo.SaveSettingsToFile("", "MF");
+					 Repo.SaveSettingsToFile("", "FavTeam");
+					 InitialSettings init = new InitialSettings();
+					 init.Show();
+					 this.Hide();
+				}
+		  }
+
+		  private void ChangeFavouriteTeamToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBoxButtons btns = MessageBoxButtons.YesNo;
             DialogResult result = MessageBox.Show("Do you want to change the settings?", "!", btns);
             if (result == DialogResult.Yes)
             {
-                InitialSettings init = new InitialSettings();
-                init.Show();
-                this.Hide();
-            }
-        }
-        private void ChangeFavouriteTeamToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            MessageBoxButtons btns = MessageBoxButtons.YesNo;
-            DialogResult result = MessageBox.Show("Do you want to change the settings?", "!", btns);
-            if (result == DialogResult.Yes)
-            {
+                Repo.SaveSettingsToFile("", "FavTeam");
                 FavouriteTeam favouriteTeam = new FavouriteTeam();
                 favouriteTeam.Show();
                 this.Hide();
             }
         }
-        private void ChangeLanguageToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            string culture = Repo.LoadLangSetting() == "hr" ? "en" : "hr";
-            FavouritePlayers fp = new FavouritePlayers(FifaCode, Mf, culture);
-            fp.Show();
-            Hide();
-        }
 
-		  private void FavouritePlayers_FormClosed(object sender, FormClosedEventArgs e)
+		  private void FavouritePlayers_FormClosing(object sender, FormClosingEventArgs e)
 		  {
-            Application.Exit();
-		  }
+            if (MessageBox.Show("Exit application?", "Warning", MessageBoxButtons.YesNoCancel) != DialogResult.Yes)
+                e.Cancel = true;
+        }
 	 }
 }

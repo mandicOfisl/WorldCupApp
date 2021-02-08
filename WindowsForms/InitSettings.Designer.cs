@@ -151,6 +151,7 @@
 				this.Name = "InitialSettings";
 				this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 				this.Text = "Početne postavke";
+				this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.InitialSettings_FormClosing);
 				this.groupBox.ResumeLayout(false);
 				this.ResumeLayout(false);
 				this.PerformLayout();

@@ -120,4 +120,7 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Odaberi svoju momčad!</value>
   </data>
+  <data name="BtnChangeCompetition.Text" xml:space="preserve">
+    <value>Promijeni postavke</value>
+  </data>
 </root>

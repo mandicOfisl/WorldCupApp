@@ -230,6 +230,12 @@
   <data name="changeLanguageToolStripMenuItem.Text" xml:space="preserve">
     <value>Change language</value>
   </data>
+  <data name="selectFavouritePlayersToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 22</value>
+  </data>
+  <data name="selectFavouritePlayersToolStripMenuItem.Text" xml:space="preserve">
+    <value>Select favourite players</value>
+  </data>
   <data name="settingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>61, 20</value>
   </data>
@@ -294,6 +300,12 @@
     <value>changeLanguageToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;changeLanguageToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;selectFavouritePlayersToolStripMenuItem.Name" xml:space="preserve">
+    <value>selectFavouritePlayersToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;selectFavouritePlayersToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">

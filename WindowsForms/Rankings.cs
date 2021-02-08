@@ -90,36 +90,51 @@ namespace WindowsForms
             printer.PrintDataGridView(dgvMatches);
         }
 
-        private void ChangeCompetitionToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ChangeCompetitionOrLanguage(object sender, EventArgs e)
         {
             MessageBoxButtons btns = MessageBoxButtons.YesNo;
             DialogResult result = MessageBox.Show("Do you want to change the settings?", "!", btns);
             if (result == DialogResult.Yes)
             {
-
+                Repo.SaveSettingsToFile("", "MF");
+                Repo.SaveSettingsToFile("", "FavTeam");
                 InitialSettings init = new InitialSettings();
                 init.Show();
                 this.Hide();
             }
         }
 
-        private void ChangeFavouriteTeamToolStripMenuItem_Click(object sender, EventArgs e)
+		  private void ChangeFavouriteTeamToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBoxButtons btns = MessageBoxButtons.YesNo;
             DialogResult result = MessageBox.Show("Do you want to change the settings?", "!", btns);
             if (result == DialogResult.Yes)
             {
+                Repo.SaveSettingsToFile("", "FavTeam");
                 FavouriteTeam favouriteTeam = new FavouriteTeam();
                 favouriteTeam.Show();
                 this.Hide();
             }
         }
 
-        private void ChangeLanguageToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
+		  private void SelectFavouritePlayersToolStripMenuItem_Click(object sender, EventArgs e)
+		  {
+            MessageBoxButtons btns = MessageBoxButtons.YesNo;
+            DialogResult result = MessageBox.Show("Do you want to change the settings?", "!", btns);
+            if (result == DialogResult.Yes)
+            {
+                string[] p = { "", "", "" };
+                Repo.SaveFavouritePlayers(p);
+                FavouritePlayers fp = new FavouritePlayers(Repo.LoadFavTeamSetting(), Repo.LoadCompetitionSetting());
+                fp.Show();
+                this.Hide();
+            }
         }
 
-		  private void Rankings_FormClosed(object sender, FormClosedEventArgs e) => Application.Exit();
+		  private void Rankings_FormClosing(object sender, FormClosingEventArgs e)
+		  {
+            if (MessageBox.Show("Exit application?", "Warning", MessageBoxButtons.YesNoCancel) != DialogResult.Yes)
+                e.Cancel = true;
+        }
 	 }
 }
