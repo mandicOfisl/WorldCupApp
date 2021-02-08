@@ -3,22 +3,18 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Reflection;
 using System.Text;
 
 namespace DataLayer
 {
     public class Repo
     {
-
 		  private const string SETTINGS_FILENAME = "settings.txt";
 
 		  private const string SETTINGS_FOLDER_NAME = @"WorldCupApp\temp";
 		  private const string IMG_FOLDER_NAME = @"WorldCupApp\temp\img";
 
 		  private const string DEF_LANG = "hr";
-		  private const char DEF_COMP = 'M';
-
 
 		  private const string MALE_TEAMS_URL = "http://world-cup-json-2018.herokuapp.com/teams";
 		  private const string FEMALE_TEAMS_URL = "http://worldcup.sfg.io/teams";		  
