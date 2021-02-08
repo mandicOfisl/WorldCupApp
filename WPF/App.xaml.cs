@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataLayer;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -12,6 +13,19 @@ namespace WPF
     /// Interaction logic for App.xaml
     /// </summary>
     public partial class App : Application
-    {
-    }
+	 {
+		  private void Application_Startup(object sender, StartupEventArgs e)
+		  {
+				if (Repo.CheckForSettingsFile())
+				{
+					 FavouriteTeam ft = new FavouriteTeam();
+					 ft.Show();
+				}
+				else
+				{
+					 InitialSettings init = new InitialSettings();
+					 init.Show();
+				}
+		  }
+	 }
 }

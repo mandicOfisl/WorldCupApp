@@ -1,7 +1,9 @@
-﻿using System;
+﻿using DataLayer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,7 +23,14 @@ namespace WPF
 	 {
 		  public LoadingWindow()
 		  {
+				SetCulture(Repo.LoadLangSetting());
 				InitializeComponent();
+		  }
+
+		  private void SetCulture(string culture)
+		  {
+				Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(culture);
+				Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(culture);
 		  }
 	 }
 }

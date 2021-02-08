@@ -4,9 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF"
+		  xmlns:p="clr-namespace:WPF.Properties"
         mc:Ignorable="d"
-        Title="TeamInfo" Height="300" Width="400"
-		  WindowStyle="ToolWindow">
+        Title="{x:Static p:Resources.TeamInfo}" Height="300" Width="400"
+		  WindowStyle="ToolWindow"
+		  ResizeMode="NoResize">
+	 
 	 <Window.Resources>
 		  <Storyboard x:Key="IncreaseHeight">
 				<DoubleAnimation Storyboard.TargetProperty="Height" 
@@ -33,16 +36,16 @@
 				<RowDefinition Height="*"/>
 		  </Grid.RowDefinitions>
 
-		  <Label Grid.Row="0" Margin="15">Name:</Label>
+		  <Label Grid.Row="0" Margin="15" Content="{x:Static p:Resources.Name}"></Label>
 		  <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Name}"></TextBlock>
 
-		  <Label Grid.Row="1" Margin="15">FIFA code:</Label>
+		  <Label Grid.Row="1" Margin="15" Content="{x:Static p:Resources.FifaCode}"></Label>
 		  <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding FifaCode}"></TextBlock>
 
-		  <Label Grid.Row="2" Margin="15">Matches P/W/D/L:</Label>
+		  <Label Grid.Row="2" Margin="15" Content="{x:Static p:Resources.MatchesPwdl}"></Label>
 		  <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Matches}"></TextBlock>
 
-		  <Label Grid.Row="3" Margin="15">Goals GF/GA/GD:</Label>
+		  <Label Grid.Row="3" Margin="15" Content="{x:Static p:Resources.GoalsFad}"></Label>
 		  <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding Goals}"></TextBlock>
 	 </Grid>
 </Window>

@@ -4,12 +4,18 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF"
+		  xmlns:p="clr-namespace:WPF.Properties"
         mc:Ignorable="d"
         Title="Loading" Height="150" Width="250"
 		  WindowStartupLocation="CenterScreen"
 		  ResizeMode="NoResize"
-		  WindowStyle="None">
+		  WindowStyle="None"
+		  Cursor="Wait">
     <Grid>
-		  <Label VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="24">Loading...</Label>
+		  <Label VerticalAlignment="Center" 
+					HorizontalAlignment="Center" 
+					FontSize="24" 
+					Content="{x:Static p:Resources.Loading}">				
+		  </Label>
     </Grid>
 </Window>

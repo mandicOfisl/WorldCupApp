@@ -4,11 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF"
+		  xmlns:p="clr-namespace:WPF.Properties"
         mc:Ignorable="d"
-        Title="Favourite team" Height="250" Width="650"
+        Title="{x:Static p:Resources.FavTeamTitle}" Height="250" Width="650"
 		  MinHeight="250" MinWidth="650"
-		  Closed="Window_Closed"
-		  WindowStartupLocation="CenterScreen">
+		  WindowStartupLocation="CenterScreen"
+		  Closing="Window_Closing">
     <Grid Margin="10">
 		  
 		  <Grid.ColumnDefinitions>
@@ -19,19 +20,36 @@
 		  </Grid.ColumnDefinitions>
 		  <Grid.RowDefinitions>
 				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
 				<RowDefinition Height="*"/>
 				<RowDefinition Height="Auto"/>
 		  </Grid.RowDefinitions>
+
+		  <Button Grid.Row="3"
+					 Grid.Column="0"
+					 Height="30"
+					 Name="BtnSettings" 
+					 Background="LightBlue" 
+					 BorderBrush="Black" 
+					 BorderThickness="1" 
+					 Click="BtnSettings_Click"
+					 ClickMode="Press"
+					 Content="{x:Static p:Resources.Settings}">
+		  </Button>
 		  
-		  <Label Grid.Row="0" Grid.Column="1" Margin="15">Select your favourite team:</Label>
-		  <ComboBox Grid.Row="1" 
+		  <Label Grid.Row="1" 
+					Grid.Column="1" 
+					Margin="15" 
+					Content="{x:Static p:Resources.SelectFavTeam}">				
+		  </Label>
+		  <ComboBox Grid.Row="2" 
 						Grid.Column="1"
 						Name="cbTeams" 
 						Width="250" 
 						Height="30"
 						SelectionChanged="CbTeamsFirst_OnSelectionChanged">
 		  </ComboBox>
-		  <Button Grid.Row="1"
+		  <Button Grid.Row="2"
 					 Grid.Column="0"
 					 Height="30"
 					 Width="35"
@@ -42,15 +60,19 @@
 					 Content="info">				
 		  </Button>
 
-		  <Label Grid.Column="2" Margin="15">Compare your team to:</Label>
-		  <ComboBox Grid.Row="1"
+		  <Label Grid.Row="1" 
+					Grid.Column="2" 
+					Margin="15" 
+					Content="{x:Static p:Resources.CompareTeam}">				
+		  </Label>
+		  <ComboBox Grid.Row="2"
 						Grid.Column="2" 
 						Name="cbTeamsSecond" 
 						Width="250" 
 						Height="30"
 						SelectionChanged="CbTeamsSecond_SelectionChanged">
 		  </ComboBox>
-		  <Button Grid.Row="1"
+		  <Button Grid.Row="2"
 					 Grid.Column="3"
 					 Height="30"
 					 Width="35"
@@ -61,7 +83,7 @@
 					 Content="info">
 		  </Button>
 
-		  <Button Grid.Row="2"
+		  <Button Grid.Row="3"
 					 Grid.Column="1"
 					 Grid.ColumnSpan="2"
 					 Height="30"
@@ -71,8 +93,8 @@
 					 BorderBrush="Black" 
 					 BorderThickness="1" 
 					 Click="BtnContinue_Click" 
-					 ClickMode="Press">
-				Continue				
+					 ClickMode="Press"
+					 Content="{x:Static p:Resources.Continue}">
 		  </Button>
     </Grid>
 </Window>

@@ -6,30 +6,65 @@ namespace WPF
 {
     public partial class InitialSettings : Window
     {
+		  private bool closedOnButton = true;
         public InitialSettings()
         {
-            InitializeComponent();
-				this.DataContext = new InitSettingsVM();
+				InitializeComponent();
+				this.DataContext = new InitSettingsVM();				
         }
 
 		  private void BtnSave_Click(object sender, RoutedEventArgs e)
 		  {
-            StringBuilder sb = new StringBuilder();
-            InitSettingsVM set = DataContext as InitSettingsVM;
-				if (set.Hrv) sb.Append("HRV;");
-					 else sb.Append("ENG;");
-				
-				if (set.MaleCompetition) sb.Append("M;");
-					 else sb.Append("F;");
+				MessageBoxResult res = MessageBox.Show(
+						  Properties.Resources.SaveSettings,
+						  Properties.Resources.Warning,
+						  MessageBoxButton.YesNoCancel);
 
-				if (set.SmallScreen) sb.Append("S");
-					 else if (set.Fullscreen) sb.Append("L");
-						  else sb.Append("M");
+				if (res == MessageBoxResult.Yes)
+				{
+					 InitSettingsVM set = DataContext as InitSettingsVM;
 
-				Repo.SaveSettingsToFile(sb.ToString(), "init.txt");
-				FavouriteTeam ft = new FavouriteTeam();
-				ft.Show();
-				this.Hide();
+					 Repo.SaveSettingsToFile(set.Hrv ? "hr" : "en", "Lang");
+					 Repo.SaveSettingsToFile(set.MaleCompetition ? "m" : "f", "MaleFemale");
+
+					 string screenSize;
+
+					 if (set.SmallScreen)
+					 {
+						  screenSize = "s";
+					 }
+					 else if (set.Fullscreen)
+					 {
+						  screenSize = "l";
+					 }
+					 else
+					 {
+						  screenSize = "m";
+					 }
+
+					 Repo.SaveSettingsToFile(screenSize, "Screen");
+
+					 FavouriteTeam ft = new FavouriteTeam();
+					 ft.Show();
+					 closedOnButton = false;
+					 this.Close();
+				}
+		  }
+
+		  private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+		  {
+				if (closedOnButton)
+				{
+					 MessageBoxResult res = MessageBox.Show(
+									 Properties.Resources.ExitApp,
+									 Properties.Resources.Warning,
+									 MessageBoxButton.YesNoCancel);
+					 if (res == MessageBoxResult.Yes)
+					 {
+						  Application.Current.Shutdown();
+					 }
+					 else e.Cancel = true;
+				}
 		  }
 	 }
 }

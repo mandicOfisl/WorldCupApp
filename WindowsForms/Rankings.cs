@@ -18,7 +18,8 @@ namespace WindowsForms
         public List<Match> Matches { get; set; }
         public List<PlayerRankTableModel> PlayerRanks { get; set; }
         public List<MatchRankTableModel> MatchesRanks { get; set; }
-        public Rankings()
+
+		  public Rankings()
         {
             string culture = Repo.LoadLangSetting();
             SetCulture(culture);
@@ -30,12 +31,6 @@ namespace WindowsForms
         {
             System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(culture);
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(culture);
-        }
-
-        private void FillDGVTables()
-        {
-            dgvPlayers.DataSource = ConvertToDataTable<PlayerRankTableModel>(PlayerRanks);
-            dgvMatches.DataSource = ConvertToDataTable<MatchRankTableModel>(MatchesRanks);
         }
 
         private async void GetAllMatches()
@@ -54,6 +49,14 @@ namespace WindowsForms
             FillDGVTables();
             lw.Close();
         }
+
+        private void FillDGVTables()
+        {
+            dgvPlayers.RowTemplate.Height = 50;
+            dgvPlayers.DataSource = ConvertToDataTable<PlayerRankTableModel>(PlayerRanks);
+            dgvMatches.DataSource = ConvertToDataTable<MatchRankTableModel>(MatchesRanks);
+        }
+
         private DataTable ConvertToDataTable<T>(IList<T> data)
         {
             PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(typeof(T));
@@ -71,8 +74,11 @@ namespace WindowsForms
                 }
                 table.Rows.Add(row);
             }
+
             return table;
         }
+
+
         private void BtnPrintPlayers_Click(object sender, EventArgs e)
         {
             DGVPrinter printer = new DGVPrinter();

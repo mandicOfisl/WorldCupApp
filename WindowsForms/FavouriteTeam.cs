@@ -10,12 +10,17 @@ namespace WindowsForms
     {
         private readonly char maleFemale;
 
-        public FavouriteTeam()
+		  public string FifaCode { get; set; }
+
+		  public FavouriteTeam()
         {
-            SetCulture(Repo.LoadLangSetting());
+            FifaCode = Repo.LoadFavTeamSetting();
             maleFemale = Repo.LoadCompetitionSetting();
+
+            SetCulture(Repo.LoadLangSetting());
             InitializeComponent();
             PopulateComboBox();
+
         }
 
         private void SetCulture(string culture)
@@ -28,24 +33,28 @@ namespace WindowsForms
         {
             LoadingWindow lw = new LoadingWindow();
             lw.Show();
+
             var teams = await DataFlow.GetTeams(Repo.GetTeamsUrl(maleFemale));
             foreach (var team in teams)
             {
                 cbTeamList.Items.Add(team.ToString());
             }
+
             lw.Close();
         }
 
         private void BtnSaveFavouriteRep_Click(object sender, EventArgs e)
         {
-            if (cbTeamList.SelectedIndex != -1)
+            if (cbTeamList.SelectedIndex > -1)
             {
                 string rep = cbTeamList.SelectedItem.ToString();
                 string fifaCode = rep.Substring(rep.IndexOf('(') + 1, 3);
-                Repo.SaveSettingsToFile("FavTeam:" + fifaCode + "\n");
+
+                Repo.SaveSettingsToFile(fifaCode, "FavTeam");
+                
                 FavouritePlayers favouritePlayers = new FavouritePlayers(fifaCode, maleFemale);
                 favouritePlayers.Show();
-                this.Hide();
+                Hide();
             }
             else
             {

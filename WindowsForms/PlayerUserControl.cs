@@ -3,6 +3,8 @@ using System.Linq;
 using System.Windows.Forms;
 using DataLayer.Models;
 using System.IO;
+using DataLayer;
+using System;
 
 namespace WindowsForms
 {
@@ -44,12 +46,9 @@ namespace WindowsForms
         }
 
 		  private void CheckSavedImages(string name)
-		  {
-            string dir = Path.Combine(
-                    Path.GetDirectoryName(
-                        Path.GetDirectoryName(
-                            Directory.GetCurrentDirectory())) + @"\img", name + ".png");
-            ImagePath = File.Exists(dir) ? dir : null;
+		  {				
+            string img = Repo.CheckForPlayerImage(name);
+            ImagePath = File.Exists(img) ? img : null;
 		  }
 
 		  private void PlayerUserControl_MouseDown(object sender, MouseEventArgs e)

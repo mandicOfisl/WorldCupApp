@@ -3,6 +3,7 @@ using DataLayer.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -11,13 +12,22 @@ namespace WPF
 {
 	 public partial class FavouriteTeam : Window
 	 {
+		  private bool closedOnButton = true;
 		  public List<DataLayer.Team> Teams { get; set; }
 		  public List<Match> FirstMatches { get; set; }
 		  public List<Match> SecondMatches { get; set; }
+
 		  public FavouriteTeam()
 		  {
+				SetCulture(Repo.LoadLangSetting());
 				InitializeComponent();
 				PopulateComboBox();
+		  }
+
+		  private void SetCulture(string culture)
+		  {
+				Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(culture);
+				Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(culture);
 		  }
 
 		  private async void PopulateComboBox()
@@ -26,8 +36,16 @@ namespace WPF
 				lw.Show();
 				try
 				{
-					 Teams = await DataFlow.GetTeams("http://world-cup-json-2018.herokuapp.com/teams");
+					 Teams = await DataFlow.GetTeams(Repo.GetTeamsUrl(Repo.LoadCompetitionSetting()));
 					 cbTeams.ItemsSource = Teams;
+
+					 string favTeam = Repo.LoadFavTeamSetting();
+					 if (favTeam != "")
+					 {
+						  cbTeams.SelectedValue = Teams.First(t => t.FifaCode == favTeam);
+						  lw.Close();
+					 }
+
 				}
 				catch (System.Exception)
 				{
@@ -43,11 +61,6 @@ namespace WPF
 				{
 					 var teamFirst = cbTeams.SelectedValue as DataLayer.Team;
 					 var teamSecond = cbTeamsSecond.SelectedValue as DataLayer.Team;
-					 StringBuilder sb = new StringBuilder();
-					 sb.Append(teamFirst.FifaCode);
-					 sb.Append(";");
-					 sb.Append(teamSecond.FifaCode);
-					 Repo.SaveSettingsToFile(sb.ToString(), "teams.txt");
 
 					 CreateNewWindow(teamFirst, teamSecond);
 				}
@@ -76,12 +89,14 @@ namespace WPF
 					 AwayStartEleven = match.AwayTeamStatistics.StartingEleven,
 					 HomeTeam = homeTeam,
 					 AwayTeam = awayTeam,
-					 Score = score
+					 Score = score,
+					 Match = match
 				};
 								
 				StartingEleven se = new StartingEleven(model);
 				se.Show();
-				this.Hide();
+				closedOnButton = false;
+				this.Close();
 		  }
 
 		  private async void CbTeamsFirst_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -96,7 +111,7 @@ namespace WPF
 
 		  private async Task PopulateSecondComboBoxAsync(string fifaCode)
 		  {
-				var url = "http://world-cup-json-2018.herokuapp.com/matches/country?fifa_code=" + fifaCode;
+				var url = Repo.GetMatchesUrl(Repo.LoadCompetitionSetting()) + fifaCode;
 				FirstMatches = await DataFlow.GetMatches(url);
 				HashSet<string> opponents = new HashSet<string>();
 				foreach (var match in FirstMatches)
@@ -110,17 +125,21 @@ namespace WPF
 						  opponents.Add(match.AwayTeam.Code);
 					 }
 				}
+				cbTeamsSecond.ItemsSource = null;
 				cbTeamsSecond.ItemsSource = (from t in Teams where opponents.Contains(t.FifaCode) select t);
 		  }
 		  private async void CbTeamsSecond_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		  {
-				string secondTeamCode = (e.AddedItems[0] as DataLayer.Team).FifaCode;
-				BtnSecondTeamInfo.IsEnabled = true;
-				var url = "http://world-cup-json-2018.herokuapp.com/matches/country?fifa_code=" + secondTeamCode;
-				LoadingWindow lw = new LoadingWindow();
-				lw.Show();
-				SecondMatches = await DataFlow.GetMatches(url);
-				lw.Close();
+				if (e.AddedItems.Count > 0)
+				{
+					 string secondTeamCode = (e.AddedItems[0] as DataLayer.Team).FifaCode;
+					 BtnSecondTeamInfo.IsEnabled = true;
+					 var url = Repo.GetMatchesUrl(Repo.LoadCompetitionSetting()) + secondTeamCode;
+					 LoadingWindow lw = new LoadingWindow();
+					 lw.Show();
+					 SecondMatches = await DataFlow.GetMatches(url);
+					 lw.Close();
+				}
 		  }
 
 		  private void BtnTeamInfo_Click(object sender, RoutedEventArgs e)
@@ -151,7 +170,36 @@ namespace WPF
 
 				new TeamInfo(model).Show();
 		  }
+		  
+		  private void BtnSettings_Click(object sender, RoutedEventArgs e)
+		  {
+				MessageBoxResult res = MessageBox.Show(
+								Properties.Resources.ChangeSettings, 
+								Properties.Resources.Warning, 
+								MessageBoxButton.YesNoCancel);
+				if (res == MessageBoxResult.Yes)
+				{
+					 InitialSettings init = new InitialSettings();
+					 init.Show();
+					 closedOnButton = false;
+					 this.Close();
+				}
+		  }
 
-		  private void Window_Closed(object sender, System.EventArgs e) => Application.Current.Shutdown();
+		  private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+		  {
+				if (closedOnButton)
+				{
+					 MessageBoxResult res = MessageBox.Show(
+									 Properties.Resources.ExitApp,
+									 Properties.Resources.Warning,
+									 MessageBoxButton.YesNoCancel);
+					 if (res == MessageBoxResult.Yes)
+					 {
+						  Application.Current.Shutdown();
+					 }
+					 else e.Cancel = true;
+				}
+		  }
 	 }
 }

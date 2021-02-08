@@ -24,7 +24,7 @@
 		  <TextBlock Grid.Row="1"
 						 FontSize="12"
 						 FontWeight="Bold"
-						 Foreground="White"
+						 Foreground="Black"
 						 HorizontalAlignment="Center"
 						 Text="{Binding Name}"
 						 TextWrapping="Wrap">

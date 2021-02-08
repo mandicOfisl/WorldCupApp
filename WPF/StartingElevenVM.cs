@@ -10,5 +10,6 @@ namespace WPF
 		  public List<Player> HomeStartEleven { get; set; }
 		  public List<Player> AwayStartEleven { get; set; }
 		  public string Score { get; set; }
+		  public Match Match { get; set; }
 	 }
 }

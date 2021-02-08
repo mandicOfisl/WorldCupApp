@@ -6,62 +6,71 @@ namespace DataLayer
     public class Ranking
     {
         public static List<PlayerRankTableModel> FilterPlayerData(List<Match> matches, string fifaCode)
-        {
-            List<PlayerRankTableModel> rtm = new List<PlayerRankTableModel>();
-            HashSet<string> appearedPlayers = GetAllAppearedPlayers(matches, fifaCode);
-            foreach (var p in appearedPlayers)
-            {
-                rtm.Add(new PlayerRankTableModel
-                {
-                    Name = p,
-                    Appearances = 0,
-                    NoGoals = 0,
-                    NoYC = 0
-                });
-            }
+		  {
+				List<PlayerRankTableModel> playersRnkTblMdls = new List<PlayerRankTableModel>();
+				HashSet<string> appearedPlayers = GetAllAppearedPlayers(matches, fifaCode);
+				foreach (var p in appearedPlayers)
+				{
+					 playersRnkTblMdls.Add(new PlayerRankTableModel
+					 {
+						  Name = p,
+						  Appearances = 0,
+						  NoGoals = 0,
+						  NoYC = 0,
+                    Image = Repo.GetPlayerImage(p)
+					 });
+				}
 
-            rtm = CountAppearances(rtm, matches, fifaCode);
+				playersRnkTblMdls = CountAppearances(playersRnkTblMdls, matches, fifaCode);
+				playersRnkTblMdls = CountYcAndGoals(matches, fifaCode, playersRnkTblMdls);
 
-            foreach (Match m in matches)
-            {
-                if (m.HomeTeam.Code == fifaCode)
-                {
-                    foreach (var e in m.HomeTeamEvents)
-                    {
-                        switch (e.TypeOfEvent)
-                        {
-                            case "yellow-card":
-                                rtm.Find(p => p.Name == e.Player).NoYC++;
-                                break;
-                            case "goal":
-                                rtm.Find(p => p.Name == e.Player).NoGoals++;
-                                break;
-                            default:
-                                break;
-                        }
-                    }
-                }
-                else
-                {
-                    foreach (var e in m.AwayTeamEvents)
-                    {
-                        switch (e.TypeOfEvent)
-                        {
-                            case "yellow-card":
-                                rtm.Find(p => p.Name == e.Player).NoYC++;
-                                break;
-                            case "goal":
-                                rtm.Find(p => p.Name == e.Player).NoGoals++;
-                                break;
-                            default:
-                                break;
-                        }
-                    }
-                }
-            }
-            return rtm;
-        }
-        private static List<PlayerRankTableModel> CountAppearances(List<PlayerRankTableModel> rtm, List<Match> matches, string fifaCode)
+				return playersRnkTblMdls;
+		  }
+
+		  private static List<PlayerRankTableModel> CountYcAndGoals(List<Match> matches, string fifaCode, List<PlayerRankTableModel> playersRnkTblMdls)
+		  {
+				foreach (Match m in matches)
+				{
+					 if (m.HomeTeam.Code == fifaCode)
+					 {
+						  foreach (var e in m.HomeTeamEvents)
+						  {
+								switch (e.TypeOfEvent)
+								{
+									 case "yellow-card":
+										  playersRnkTblMdls.Find(p => p.Name == e.Player).NoYC++;
+										  break;
+									 case "goal":
+										  playersRnkTblMdls.Find(p => p.Name == e.Player).NoGoals++;
+										  break;
+									 default:
+										  break;
+								}
+						  }
+					 }
+					 else
+					 {
+						  foreach (var e in m.AwayTeamEvents)
+						  {
+								switch (e.TypeOfEvent)
+								{
+									 case "yellow-card":
+										  playersRnkTblMdls.Find(p => p.Name == e.Player).NoYC++;
+										  break;
+									 case "goal":
+										  playersRnkTblMdls.Find(p => p.Name == e.Player).NoGoals++;
+										  break;
+									 default:
+										  break;
+								}
+						  }
+					 }
+				}
+            return playersRnkTblMdls;
+		  }
+
+
+		  private static List<PlayerRankTableModel> CountAppearances(List<PlayerRankTableModel> rtm, List<Match> matches, string fifaCode)
         {
             foreach (Match m in matches)
             {

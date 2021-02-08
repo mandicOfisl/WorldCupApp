@@ -13,14 +13,30 @@ namespace WindowsForms
         {
 				if (Repo.CheckForSettingsFile())
 				{
-                OpenFavTeamForm();
+					 if (Repo.LoadFavTeamSetting() != "")
+					 {
+                    OpenFavPlayersForm();
+					 }
+					 else
+					 {
+                    OpenFavTeamForm();
+					 }					 
 				}
 				else
-				{                
+				{
                 SetCulture(DEFAULT_LANGUAGE);            
                 InitializeComponent();
-				}
+				}				
         }
+
+		  private void OpenFavPlayersForm()
+		  {
+            FavouritePlayers favouritePlayers = new FavouritePlayers(
+                    Repo.LoadFavTeamSetting(),
+                    Repo.LoadCompetitionSetting());
+            favouritePlayers.Show();
+            Hide();
+		  }
 
 		  private void OpenFavTeamForm()
 		  {
@@ -37,13 +53,8 @@ namespace WindowsForms
 
 		  private void BtnSaveInitSettings_Click(object sender, EventArgs e)
         {
-            var settings = new StringBuilder();
-
-            settings.Append(rbHrv.Checked ? "Lang:HRV\n" : "Lang:ENG\n");
-            settings.Append(rbMale.Checked ? "MaleFemale:M\n" : "MaleFemale:M\nF");
-
-            Repo.CreateSettingsFile();
-            Repo.SaveSettingsToFile(settings.ToString());
+            Repo.SaveSettingsToFile(rbHrv.Checked ? "hr" : "en", "Lang");
+            Repo.SaveSettingsToFile(rbMale.Checked ? "M" : "F", "MaleFemale");
 
             OpenFavTeamForm();
         }

@@ -17,10 +17,8 @@ namespace WindowsForms
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-				if (Repo.CheckForSettingsFile())
-                Application.Run(new FavouriteTeam());
-				else
-                Application.Run(new InitialSettings());
+            Application.Run(new InitialSettings());
+
         }
     }
 }

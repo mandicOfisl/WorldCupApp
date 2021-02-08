@@ -1,5 +1,7 @@
 ## WorldCup App setitngs ##
-
 Lang:HRV
 MaleFemale:M
-
+FavTeam:
+P:
+P:
+P:

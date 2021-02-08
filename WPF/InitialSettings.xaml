@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:WPF"
         mc:Ignorable="d"
         Title="Initial settings" Height="450" Width="450"
-		  WindowStartupLocation="CenterScreen">
+		  WindowStartupLocation="CenterScreen"
+		  Closing="Window_Closing">
 
 	 <Window.Resources>
 		  <local:EnumMatchToBooleanConverter x:Key="enumConverter" />

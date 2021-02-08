@@ -10,10 +10,13 @@ namespace WPF
 	 public partial class PitchUC : UserControl
 	 {
 		  public List<Player> Players { get; set; }
-		  public PitchUC(List<Player> players)
+		  public Match Match { get; set; }
+		  public PitchUC(List<Player> players, Match match)
 		  {
 				InitializeComponent();
 				this.DataContext = players;
+				Match = match;
+				Players = players;
 
 				DrawColumns(players);
 		  }
@@ -39,13 +42,18 @@ namespace WPF
 
 				foreach (var player in players)
 				{
+					 string img = Repo.CheckForPlayerImage(player.Name);
+
 					 PlayerUcVM playerUcModel = new PlayerUcVM
 					 {
-						  Name = player.Name,
+						  Name = player.Name + " " + player.ShirtNumber,
 						  Number = player.ShirtNumber.ToString(),
-						  PicturePath = "/Resources/no-image.png"
+						  PicturePath = img == "" ? "/Resources/no-image.png" : img
 					 };
 					 PlayerUC playerUC = new PlayerUC(playerUcModel);
+
+					 playerUC.MouseLeftButtonDown += PlayerUC_MouseLeftButtonDown;
+
 					 switch (player.Position)
 					 {
 						  case Position.Goalie:
@@ -56,23 +64,47 @@ namespace WPF
 								continue;
 						  case Position.Defender:
 								Grid.SetRow(playerUC, 2);
-								CalculateColumnPosition(playerUC, df++, int.Parse(form[1]), colNum);
+								CalculateColumnPosition(playerUC, df++, int.Parse(form[0]), colNum);
 								grid.Children.Add(playerUC);
 								continue;
 						  case Position.Midfield:
 								Grid.SetRow(playerUC, 1);
-								Grid.SetColumn(playerUC, mf++);
+								CalculateColumnPosition(playerUC, mf++, int.Parse(form[1]), colNum);
 								grid.Children.Add(playerUC);
 								continue;
 						  case Position.Forward:
 								Grid.SetRow(playerUC, 0);
-								Grid.SetColumn(playerUC, at++);
+								CalculateColumnPosition(playerUC, at++, int.Parse(form[2]), colNum);
 								grid.Children.Add(playerUC);
 								continue;
 						  default:
 								break;
 					 }
 				}
+		  }
+
+		  private void PlayerUC_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+		  {
+				PlayerUC player = sender as PlayerUC;
+
+				string plName = player.PlayerName;
+
+				Player plyr = Players.First(p => p.Name == plName);
+
+				string img = Repo.CheckForPlayerImage(plName);
+
+				PlayerInfoVM playerInfoVM = new PlayerInfoVM
+				{
+					 NameNumber = plName + " " + player.Number,
+					 Captain = plyr.Captain ? "Yes" : "No",
+					 Position = plyr.Position.ToString(),
+					 Goals = Repo.CountPlayerGoals(plName, Match).ToString(),
+					 YellowCards = Repo.CountPlayerYc(plName, Match).ToString(),
+					 ImagePath = img == "" ? "/Resources/no-image.png" : img
+				};
+
+				new PlayerInfo(playerInfoVM).Show();
+
 		  }
 
 		  private void CalculateColumnPosition(PlayerUC playerUC, int current, int numberInRow, int colNum)

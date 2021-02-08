@@ -58,6 +58,8 @@ namespace WindowsForms
 
 
             List<Player> players = DataFlow.GetPlayersFromMatch(firstMatch, fifaCode);
+            List<string> favPlayers = CheckForFavPlayers(players);
+            players = players.Where(p => !favPlayers.Contains(p.Name)).ToList();
             foreach (var player in players)
             {
                 flpAllPlayers.Controls.Add(
@@ -66,17 +68,52 @@ namespace WindowsForms
                         ContextMenuStrip = cmsFavourite
                     });
             }
-            lw.Close();
+
+
+				lw.Close();
         }
-        private void BtnSaveFavouritePlayers_Click(object sender, EventArgs e)
+
+		  private List<string> CheckForFavPlayers(List<Player> plyrs)
+		  {
+            List<string> favPlayers = Repo.LoadFavPlayers();
+				try
+				{
+					 if (favPlayers.Count > 0)
+					 {
+						  favPlayers.ForEach(fp =>
+						  {
+								flpFavouritePlayers.Controls.Add(
+										  new PlayerUserControl(plyrs.Single(p => p.Name == fp))
+										  {
+												ContextMenuStrip = cmsFavourite,
+												FavouriteIconVisible = true
+										  }
+									 );
+						  }
+						  );
+					 }
+				}
+				catch (Exception)
+				{
+				}
+                
+            return favPlayers;            
+
+				
+		  }
+
+		  private void BtnSaveFavouritePlayers_Click(object sender, EventArgs e)
         {
-            StringBuilder favPlayers = new StringBuilder();
-            var plyrs = flpFavouritePlayers.Controls.OfType<PlayerUserControl>();
+            string[] favPlayers = new string[3];
+            List<PlayerUserControl> plyrs = flpFavouritePlayers.Controls.OfType<PlayerUserControl>().ToList();
+            int i = 0;
             foreach (var p in plyrs)
-            {
-                favPlayers.AppendLine(p.Player.Name);
+            {   
+                favPlayers[i++] = p.Player.Name;
             }
-            Repo.SaveSettingsToFile(favPlayers.ToString());
+            Repo.SaveFavouritePlayers(favPlayers);
+
+            //Repo.SaveSettingsToFile(favPlayers.ToString());
 
             Rankings rankings = new Rankings();
             rankings.Show();
