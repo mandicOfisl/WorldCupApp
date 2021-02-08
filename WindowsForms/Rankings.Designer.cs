@@ -131,6 +131,7 @@
 				this.MainMenuStrip = this.menuStrip1;
 				this.Name = "Rankings";
 				this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Rankings_FormClosing);
+				this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Rankings_FormClosed);
 				((System.ComponentModel.ISupportInitialize)(this.dgvPlayers)).EndInit();
 				((System.ComponentModel.ISupportInitialize)(this.dgvMatches)).EndInit();
 				this.menuStrip1.ResumeLayout(false);

@@ -168,11 +168,14 @@
   <data name="&gt;&gt;btnSaveFavouriteRep.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="BtnChangeCompetition.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Stretch</value>
+  </data>
   <data name="BtnChangeCompetition.Location" type="System.Drawing.Point, System.Drawing">
     <value>2, 2</value>
   </data>
   <data name="BtnChangeCompetition.Size" type="System.Drawing.Size, System.Drawing">
-    <value>188, 36</value>
+    <value>47, 42</value>
   </data>
   <data name="BtnChangeCompetition.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>

@@ -42,3 +42,7 @@ D:\OneDrive - Visoko uciliste Algebra\VUA\IV. Sem\OOP.NET\Projekt\WPF\obj\Debug\
 D:\OneDrive - Visoko uciliste Algebra\VUA\IV. Sem\OOP.NET\Projekt\WPF\obj\Debug\hr\WPF.resources.dll
 D:\OneDrive - Visoko uciliste Algebra\VUA\IV. Sem\OOP.NET\Projekt\WPF\obj\Debug\en\WPF.resources.dll
 D:\OneDrive - Visoko uciliste Algebra\VUA\IV. Sem\OOP.NET\Projekt\WPF\obj\Debug\App.baml
+D:\OneDrive - Visoko uciliste Algebra\VUA\IV. Sem\OOP.NET\Projekt\WPF\bin\Debug\WPF.exe.manifest
+D:\OneDrive - Visoko uciliste Algebra\VUA\IV. Sem\OOP.NET\Projekt\WPF\bin\Debug\WPF.application
+D:\OneDrive - Visoko uciliste Algebra\VUA\IV. Sem\OOP.NET\Projekt\WPF\obj\Debug\WPF.exe.manifest
+D:\OneDrive - Visoko uciliste Algebra\VUA\IV. Sem\OOP.NET\Projekt\WPF\obj\Debug\WPF.application

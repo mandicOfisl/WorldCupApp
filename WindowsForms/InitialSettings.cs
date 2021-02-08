@@ -39,5 +39,10 @@ namespace WindowsForms
                 e.Cancel = true;
 
         }
+
+		  private void InitialSettings_FormClosed(object sender, FormClosedEventArgs e)
+		  {
+            Application.Exit();
+		  }
 	 }
 }

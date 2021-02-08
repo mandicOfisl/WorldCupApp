@@ -120,7 +120,4 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Pick your favourite team!</value>
   </data>
-  <data name="BtnChangeCompetition.Text" xml:space="preserve">
-    <value>Change Competition/Language</value>
-  </data>
 </root>

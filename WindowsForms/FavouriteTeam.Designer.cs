@@ -50,6 +50,7 @@
 				// 
 				// BtnChangeCompetition
 				// 
+				this.BtnChangeCompetition.BackgroundImage = global::WindowsForms.Properties.Resources.gear_icon;
 				resources.ApplyResources(this.BtnChangeCompetition, "BtnChangeCompetition");
 				this.BtnChangeCompetition.Name = "BtnChangeCompetition";
 				this.BtnChangeCompetition.UseVisualStyleBackColor = true;
@@ -67,6 +68,7 @@
 				this.MinimizeBox = false;
 				this.Name = "FavouriteTeam";
 				this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FavouriteTeam_FormClosing);
+				this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FavouriteTeam_FormClosed);
 				this.ResumeLayout(false);
 
         }

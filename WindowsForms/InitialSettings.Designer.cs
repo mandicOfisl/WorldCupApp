@@ -152,6 +152,7 @@
 				this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 				this.Text = "Početne postavke";
 				this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.InitialSettings_FormClosing);
+				this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.InitialSettings_FormClosed);
 				this.groupBox.ResumeLayout(false);
 				this.ResumeLayout(false);
 				this.PerformLayout();

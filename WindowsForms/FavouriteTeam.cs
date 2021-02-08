@@ -76,5 +76,10 @@ namespace WindowsForms
 				if (MessageBox.Show(Properties.Resources.exitApp, Properties.Resources.warning, MessageBoxButtons.YesNoCancel) != DialogResult.Yes)
 					 e.Cancel = true;
 		  }
+
+		  private void FavouriteTeam_FormClosed(object sender, FormClosedEventArgs e)
+		  {
+            Application.Exit();
+		  }
 	 }
 }

@@ -158,6 +158,7 @@ namespace WindowsForms
 				this.Controls.Add(this.lblFavouritePlayers);
 				this.Name = "FavouritePlayers";
 				this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FavouritePlayers_FormClosing);
+				this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FavouritePlayers_FormClosed);
 				this.cmsFavourite.ResumeLayout(false);
 				this.menuStrip1.ResumeLayout(false);
 				this.menuStrip1.PerformLayout();

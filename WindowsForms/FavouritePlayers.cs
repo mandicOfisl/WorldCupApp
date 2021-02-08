@@ -23,15 +23,6 @@ namespace WindowsForms
             FillAllPlayers(Mf, FifaCode);
         }
 
-		  public FavouritePlayers(string fifaCode, char mf, string culture)
-		  {
-            SetCulture(culture);
-            InitializeComponent();
-            Mf = mf;
-				FifaCode = fifaCode;
-            FillAllPlayers(Mf, FifaCode);
-        }
-
 		  private void SetCulture(string culture)
         {
             System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(culture);
@@ -91,9 +82,7 @@ namespace WindowsForms
 						  });
 					 }
 				}
-				catch (Exception)
-				{
-				}
+				catch (Exception)	{ }
 
             return favPlayers;				
 		  }
@@ -228,5 +217,10 @@ namespace WindowsForms
             if (MessageBox.Show(Properties.Resources.exitApp, Properties.Resources.warning, MessageBoxButtons.YesNoCancel) != DialogResult.Yes)
                 e.Cancel = true;
         }
+
+		  private void FavouritePlayers_FormClosed(object sender, FormClosedEventArgs e)
+		  {
+            Application.Exit();
+		  }
 	 }
 }

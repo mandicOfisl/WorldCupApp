@@ -78,7 +78,6 @@ namespace WindowsForms
             return table;
         }
 
-
         private void BtnPrintPlayers_Click(object sender, EventArgs e)
         {
             DGVPrinter printer = new DGVPrinter();
@@ -136,5 +135,10 @@ namespace WindowsForms
             if (MessageBox.Show(Properties.Resources.exitApp, Properties.Resources.warning, MessageBoxButtons.YesNoCancel) != DialogResult.Yes)
                 e.Cancel = true;
         }
+
+		  private void Rankings_FormClosed(object sender, FormClosedEventArgs e)
+		  {
+            Application.Exit();
+		  }
 	 }
 }
