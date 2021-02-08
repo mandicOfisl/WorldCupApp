@@ -93,7 +93,7 @@ namespace WindowsForms
         private void ChangeCompetitionOrLanguage(object sender, EventArgs e)
         {
             MessageBoxButtons btns = MessageBoxButtons.YesNo;
-            DialogResult result = MessageBox.Show("Do you want to change the settings?", "!", btns);
+            DialogResult result = MessageBox.Show(Properties.Resources.changeSettings, Properties.Resources.warning, btns);
             if (result == DialogResult.Yes)
             {
                 Repo.SaveSettingsToFile("", "MF");
@@ -107,7 +107,7 @@ namespace WindowsForms
 		  private void ChangeFavouriteTeamToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBoxButtons btns = MessageBoxButtons.YesNo;
-            DialogResult result = MessageBox.Show("Do you want to change the settings?", "!", btns);
+            DialogResult result = MessageBox.Show(Properties.Resources.changeSettings, Properties.Resources.warning, btns);
             if (result == DialogResult.Yes)
             {
                 Repo.SaveSettingsToFile("", "FavTeam");
@@ -120,7 +120,7 @@ namespace WindowsForms
 		  private void SelectFavouritePlayersToolStripMenuItem_Click(object sender, EventArgs e)
 		  {
             MessageBoxButtons btns = MessageBoxButtons.YesNo;
-            DialogResult result = MessageBox.Show("Do you want to change the settings?", "!", btns);
+            DialogResult result = MessageBox.Show(Properties.Resources.changeSettings, Properties.Resources.warning, btns);
             if (result == DialogResult.Yes)
             {
                 string[] p = { "", "", "" };
@@ -133,7 +133,7 @@ namespace WindowsForms
 
 		  private void Rankings_FormClosing(object sender, FormClosingEventArgs e)
 		  {
-            if (MessageBox.Show("Exit application?", "Warning", MessageBoxButtons.YesNoCancel) != DialogResult.Yes)
+            if (MessageBox.Show(Properties.Resources.exitApp, Properties.Resources.warning, MessageBoxButtons.YesNoCancel) != DialogResult.Yes)
                 e.Cancel = true;
         }
 	 }

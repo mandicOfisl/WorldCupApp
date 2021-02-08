@@ -86,11 +86,11 @@
     <Compile Include="FavouriteTeam.Designer.cs">
       <DependentUpon>FavouriteTeam.cs</DependentUpon>
     </Compile>
-    <Compile Include="InitSettings.cs">
+    <Compile Include="InitialSettings.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="InitSettings.Designer.cs">
-      <DependentUpon>InitSettings.cs</DependentUpon>
+    <Compile Include="InitialSettings.Designer.cs">
+      <DependentUpon>InitialSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="LoadingWindow.cs">
       <SubType>Form</SubType>
@@ -140,8 +140,14 @@
     <EmbeddedResource Include="FavouriteTeam.resx">
       <DependentUpon>FavouriteTeam.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="InitSettings.resx">
-      <DependentUpon>InitSettings.cs</DependentUpon>
+    <EmbeddedResource Include="InitialSettings.resx">
+      <DependentUpon>InitialSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoadingWindow.en.resx">
+      <DependentUpon>LoadingWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoadingWindow.hr.resx">
+      <DependentUpon>LoadingWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoadingWindow.resx">
       <DependentUpon>LoadingWindow.cs</DependentUpon>

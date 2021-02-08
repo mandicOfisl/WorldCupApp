@@ -117,32 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="changeSettings" xml:space="preserve">
-    <value>Promijeniti postavke?</value>
-  </data>
-  <data name="error" xml:space="preserve">
-    <value>Dogodila se greška. Pokušajte ponovo.</value>
-  </data>
-  <data name="exitApp" xml:space="preserve">
-    <value>Izaći iz aplikacije?</value>
-  </data>
-  <data name="favTeamError" xml:space="preserve">
-    <value>Odaberi omiljenu momčad i stisni gumb Spremi za nastavak!</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="gear_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\gear-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="no_image" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\no-image.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Programming_Save_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Programming-Save-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="star_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\star-icon.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="warning" xml:space="preserve">
-    <value>Upozorenje</value>
+  <data name="$label.Text" xml:space="preserve">
+    <value>Loading . . .</value>
   </data>
 </root>

@@ -1,6 +1,5 @@
 ﻿using DataLayer;
 using System;
-using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -36,7 +35,7 @@ namespace WindowsForms
 
 		  private void InitialSettings_FormClosing(object sender, FormClosingEventArgs e)
 		  {
-            if (MessageBox.Show("Exit application?", "Warning", MessageBoxButtons.YesNoCancel) != DialogResult.Yes)
+            if (MessageBox.Show(Properties.Resources.exitApp, Properties.Resources.warning, MessageBoxButtons.YesNoCancel) != DialogResult.Yes)
                 e.Cancel = true;
 
         }

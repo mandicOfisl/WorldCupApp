@@ -1,6 +1,5 @@
 ﻿using DataLayer;
 using System;
-using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -8,36 +7,16 @@ namespace WindowsForms
 {
     public partial class FavouriteTeam : Form
     {
-        private readonly char maleFemale;
+        private readonly char maleFemale = Repo.LoadCompetitionSetting();
 
 		  public string FifaCode { get; set; }
         
 		  public FavouriteTeam()
         {
-				try
-				{
-					 FifaCode = Repo.LoadFavTeamSetting();
-					 maleFemale = Repo.LoadCompetitionSetting();
-
-					 if (FifaCode != "")
-					 {
-                    FavouritePlayers favouritePlayers = new FavouritePlayers(FifaCode, maleFemale);
-                    favouritePlayers.Show();
-					 }
-					 else
-					 {
-					     SetCulture(Repo.LoadLangSetting());
-					     InitializeComponent();
-					     PopulateComboBox();
-					 }
-				}
-				catch (Exception)
-				{
-                InitialSettings init = new InitialSettings();
-                init.Show();
-				}
-
-        }
+            SetCulture(Repo.LoadLangSetting());
+            InitializeComponent();
+            PopulateComboBox();
+		  }
 
         private void SetCulture(string culture)
         {
@@ -81,7 +60,7 @@ namespace WindowsForms
 		  private void BtnChangeCompetition_Click(object sender, EventArgs e)
 		  {
             MessageBoxButtons btns = MessageBoxButtons.YesNo;
-            DialogResult result = MessageBox.Show("Do you want to change the settings?", "!", btns);
+            DialogResult result = MessageBox.Show(Properties.Resources.changeSettings, Properties.Resources.warning, btns);
             if (result == DialogResult.Yes)
             {
                 Repo.SaveSettingsToFile("", "MF");
@@ -94,7 +73,7 @@ namespace WindowsForms
 
 		  private void FavouriteTeam_FormClosing(object sender, FormClosingEventArgs e)
 		  {
-				if (MessageBox.Show("Exit application?", "Warning", MessageBoxButtons.YesNoCancel) != DialogResult.Yes)
+				if (MessageBox.Show(Properties.Resources.exitApp, Properties.Resources.warning, MessageBoxButtons.YesNoCancel) != DialogResult.Yes)
 					 e.Cancel = true;
 		  }
 	 }

@@ -117,6 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="changeSettings" xml:space="preserve">
+    <value>Do you want to change the settings?</value>
+  </data>
+  <data name="error" xml:space="preserve">
+    <value>There has been an error. Please try again.</value>
+  </data>
+  <data name="exitApp" xml:space="preserve">
+    <value>Exit application?</value>
+  </data>
   <data name="favTeamError" xml:space="preserve">
     <value>Pick your favourite team and click the 'Save' button to continue!</value>
   </data>
@@ -132,5 +141,8 @@
   </data>
   <data name="star_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\star-icon.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="warning" xml:space="preserve">
+    <value>Warning</value>
   </data>
 </root>

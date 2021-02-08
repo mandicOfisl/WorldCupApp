@@ -1,10 +1,4 @@
 ﻿using DataLayer;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace WPF
@@ -18,8 +12,16 @@ namespace WPF
 		  {
 				if (Repo.CheckForSettingsFile())
 				{
-					 FavouriteTeam ft = new FavouriteTeam();
-					 ft.Show();
+					 if (Repo.LoadScreenSizeSetting() != "")
+					 {
+						  FavouriteTeam ft = new FavouriteTeam();
+						  ft.Show();
+					 }
+					 else
+					 {
+						  InitialSettings init = new InitialSettings();
+						  init.Show();
+					 }					 
 				}
 				else
 				{

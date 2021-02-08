@@ -1,5 +1,4 @@
 ﻿using DataLayer;
-using System.Text;
 using System.Windows;
 
 namespace WPF

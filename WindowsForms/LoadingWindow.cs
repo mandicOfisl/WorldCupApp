@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DataLayer;
 using System.Windows.Forms;
 
 namespace WindowsForms
@@ -14,7 +7,14 @@ namespace WindowsForms
 	 {
 		  public LoadingWindow()
 		  {
+				SetCulture(Repo.LoadLangSetting());
 				InitializeComponent();
+		  }
+
+		  private void SetCulture(string culture)
+		  {
+				System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(culture);
+				System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(culture);
 		  }
 	 }
 }

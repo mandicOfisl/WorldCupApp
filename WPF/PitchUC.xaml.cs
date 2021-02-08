@@ -87,7 +87,7 @@ namespace WPF
 		  {
 				PlayerUC player = sender as PlayerUC;
 
-				string plName = player.PlayerName;
+				string plName = player.PlayerName.Substring(0, player.PlayerName.LastIndexOf(' '));
 
 				Player plyr = Players.First(p => p.Name == plName);
 

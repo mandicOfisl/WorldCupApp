@@ -54,7 +54,7 @@ namespace WindowsForms
 				}
 				catch (Exception)
 				{
-                MessageBox.Show("There has been an error. Please select another team");
+                MessageBox.Show(Properties.Resources.error);
 				}
 
 
@@ -69,7 +69,6 @@ namespace WindowsForms
                         ContextMenuStrip = cmsFavourite
                     });
             }
-
 
 				lw.Close();
         }
@@ -88,19 +87,15 @@ namespace WindowsForms
 										  {
 												ContextMenuStrip = cmsFavourite,
 												FavouriteIconVisible = true
-										  }
-									 );
-						  }
-						  );
+										  });
+						  });
 					 }
 				}
 				catch (Exception)
 				{
 				}
 
-            return favPlayers;
-
-				
+            return favPlayers;				
 		  }
 
 		  private void BtnSaveFavouritePlayers_Click(object sender, EventArgs e)
@@ -204,7 +199,7 @@ namespace WindowsForms
 		  private void ChangeCompetitionOrLanguage(object sender, EventArgs e)
 		  {
 				MessageBoxButtons btns = MessageBoxButtons.YesNo;
-				DialogResult result = MessageBox.Show("Do you want to change the settings?", "!", btns);
+				DialogResult result = MessageBox.Show(Properties.Resources.changeSettings, Properties.Resources.warning, btns);
 				if (result == DialogResult.Yes)
 				{
 					 Repo.SaveSettingsToFile("", "MF");
@@ -218,7 +213,7 @@ namespace WindowsForms
 		  private void ChangeFavouriteTeamToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBoxButtons btns = MessageBoxButtons.YesNo;
-            DialogResult result = MessageBox.Show("Do you want to change the settings?", "!", btns);
+            DialogResult result = MessageBox.Show(Properties.Resources.changeSettings, Properties.Resources.warning, btns);
             if (result == DialogResult.Yes)
             {
                 Repo.SaveSettingsToFile("", "FavTeam");
@@ -230,7 +225,7 @@ namespace WindowsForms
 
 		  private void FavouritePlayers_FormClosing(object sender, FormClosingEventArgs e)
 		  {
-            if (MessageBox.Show("Exit application?", "Warning", MessageBoxButtons.YesNoCancel) != DialogResult.Yes)
+            if (MessageBox.Show(Properties.Resources.exitApp, Properties.Resources.warning, MessageBoxButtons.YesNoCancel) != DialogResult.Yes)
                 e.Cancel = true;
         }
 	 }

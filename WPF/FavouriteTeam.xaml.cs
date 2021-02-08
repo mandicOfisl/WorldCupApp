@@ -2,7 +2,6 @@
 using DataLayer.Models;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -49,8 +48,7 @@ namespace WPF
 				}
 				catch (System.Exception)
 				{
-					 MessageBox.Show("There has been an error connecting to the server. Please try again later!");
-					 Application.Current.Shutdown();
+					 lw.Close();
 				}
 				lw.Close();
 		  }

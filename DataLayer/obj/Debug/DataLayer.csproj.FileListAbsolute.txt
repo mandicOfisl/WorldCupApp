@@ -4,7 +4,6 @@ D:\OneDrive - Visoko uciliste Algebra\VUA\IV. Sem\OOP.NET\Projekt\DataLayer\bin\
 D:\OneDrive - Visoko uciliste Algebra\VUA\IV. Sem\OOP.NET\Projekt\DataLayer\bin\Debug\RestSharp.dll
 D:\OneDrive - Visoko uciliste Algebra\VUA\IV. Sem\OOP.NET\Projekt\DataLayer\bin\Debug\Newtonsoft.Json.xml
 D:\OneDrive - Visoko uciliste Algebra\VUA\IV. Sem\OOP.NET\Projekt\DataLayer\bin\Debug\RestSharp.xml
-D:\OneDrive - Visoko uciliste Algebra\VUA\IV. Sem\OOP.NET\Projekt\DataLayer\obj\Debug\DataLayer.csprojAssemblyReference.cache
 D:\OneDrive - Visoko uciliste Algebra\VUA\IV. Sem\OOP.NET\Projekt\DataLayer\obj\Debug\DataLayer.csproj.CoreCompileInputs.cache
 D:\OneDrive - Visoko uciliste Algebra\VUA\IV. Sem\OOP.NET\Projekt\DataLayer\obj\Debug\DataLayer.csproj.CopyComplete
 D:\OneDrive - Visoko uciliste Algebra\VUA\IV. Sem\OOP.NET\Projekt\DataLayer\obj\Debug\DataLayer.dll

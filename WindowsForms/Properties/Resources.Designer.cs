@@ -61,6 +61,33 @@ namespace WindowsForms.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Do you want to change the settings?.
+        /// </summary>
+        internal static string changeSettings {
+            get {
+                return ResourceManager.GetString("changeSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There has been an error. Please try again..
+        /// </summary>
+        internal static string error {
+            get {
+                return ResourceManager.GetString("error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exit application?.
+        /// </summary>
+        internal static string exitApp {
+            get {
+                return ResourceManager.GetString("exitApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pick your favourite team and click the &apos;Save&apos; button to continue!.
         /// </summary>
         internal static string favTeamError {
@@ -106,6 +133,15 @@ namespace WindowsForms.Properties {
             get {
                 object obj = ResourceManager.GetObject("star_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Warning.
+        /// </summary>
+        internal static string warning {
+            get {
+                return ResourceManager.GetString("warning", resourceCulture);
             }
         }
     }

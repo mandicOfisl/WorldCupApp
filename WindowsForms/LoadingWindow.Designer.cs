@@ -29,26 +29,27 @@ namespace WindowsForms
 		  /// </summary>
 		  private void InitializeComponent()
 		  {
-				this.label1 = new System.Windows.Forms.Label();
+				this.label = new System.Windows.Forms.Label();
 				this.SuspendLayout();
 				// 
-				// label1
+				// label
 				// 
-				this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-				this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-				this.label1.Location = new System.Drawing.Point(0, 0);
-				this.label1.Name = "label1";
-				this.label1.Size = new System.Drawing.Size(250, 150);
-				this.label1.TabIndex = 0;
-				this.label1.Text = "Loading...";
-				this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+				this.label.Cursor = System.Windows.Forms.Cursors.WaitCursor;
+				this.label.Dock = System.Windows.Forms.DockStyle.Fill;
+				this.label.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+				this.label.Location = new System.Drawing.Point(0, 0);
+				this.label.Name = "label";
+				this.label.Size = new System.Drawing.Size(250, 150);
+				this.label.TabIndex = 0;
+				this.label.Text = "Loading...";
+				this.label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 				// 
 				// LoadingWindow
 				// 
 				this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 				this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 				this.ClientSize = new System.Drawing.Size(250, 150);
-				this.Controls.Add(this.label1);
+				this.Controls.Add(this.label);
 				this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 				this.MaximizeBox = false;
 				this.MinimizeBox = false;
@@ -64,6 +65,6 @@ namespace WindowsForms
 
 		  #endregion
 
-		  private System.Windows.Forms.Label label1;
+		  private System.Windows.Forms.Label label;
 	 }
 }

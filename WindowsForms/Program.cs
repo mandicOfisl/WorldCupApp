@@ -1,8 +1,5 @@
 ﻿using DataLayer;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WindowsForms
@@ -20,11 +17,41 @@ namespace WindowsForms
 
 				if (Repo.CheckForSettingsFile())
 				{
-                Application.Run(new FavouriteTeam());
+					 try
+					 {
+						  string fifaCode = Repo.LoadFavTeamSetting();
+						  char maleFemale = Repo.LoadCompetitionSetting();
+
+						  if (fifaCode != "")
+						  {
+								FavouritePlayers favouritePlayers = new FavouritePlayers(fifaCode, maleFemale);
+								//favouritePlayers.ShowDialog();
+								Application.Run(favouritePlayers);
+
+								favouritePlayers.Dispose();
+						  }
+						  else
+						  {
+								FavouriteTeam ft = new FavouriteTeam();
+								Application.Run(ft);
+								ft.Dispose();
+						  }
+					 }
+					 catch (Exception)
+					 {
+						  InitialSettings initSett = new InitialSettings();
+						  Application.Run(initSett);
+						  initSett.Dispose();
+					 }
+
+                //Application.Run(new FavouriteTeam());
 				}
 				else
 				{
-                Application.Run(new InitialSettings());
+                InitialSettings initSett = new InitialSettings();
+                Application.Run(initSett);
+                initSett.Dispose();
+
             }
 
         }
